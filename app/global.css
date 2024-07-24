@@ -148,3 +148,7 @@ table {
 .title {
   text-wrap: balance;
 }
+
+article p {
+  @apply my-4 leading-relaxed;
+}

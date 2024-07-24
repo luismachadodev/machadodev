@@ -53,38 +53,38 @@ export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
 }
 
-export function formatDate(date: string, includeRelative = false) {
-  let currentDate = new Date()
+export function formatDate(date, includeRelative = false) {
+  let currentDate = new Date();
   if (!date.includes('T')) {
-    date = `${date}T00:00:00`
+    date = `${date}T00:00:00`;
   }
-  let targetDate = new Date(date)
+  let targetDate = new Date(date);
 
-  let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear()
-  let monthsAgo = currentDate.getMonth() - targetDate.getMonth()
-  let daysAgo = currentDate.getDate() - targetDate.getDate()
+  let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
+  let monthsAgo = currentDate.getMonth() - targetDate.getMonth();
+  let daysAgo = currentDate.getDate() - targetDate.getDate();
 
-  let formattedDate = ''
+  let formattedDate = '';
 
   if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`
+    formattedDate = `${yearsAgo}a atrás`;
   } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`
+    formattedDate = `${monthsAgo}m atrás`;
   } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`
+    formattedDate = `${daysAgo}d atrás`;
   } else {
-    formattedDate = 'Today'
+    formattedDate = 'Hoje';
   }
 
-  let fullDate = targetDate.toLocaleString('en-us', {
-    month: 'long',
+  let fullDate = targetDate.toLocaleDateString('pt-BR', {
     day: 'numeric',
+    month: 'long',
     year: 'numeric',
-  })
+  });
 
   if (!includeRelative) {
-    return fullDate
+    return fullDate;
   }
 
-  return `${fullDate} (${formattedDate})`
+  return `${fullDate} (${formattedDate})`;
 }
